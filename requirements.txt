@@ -7,3 +7,4 @@ Langchain_chroma
 Langchain_huggingface
 sentence-transformers
 pysqlite3-binary
+pypdf
