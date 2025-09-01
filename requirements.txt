@@ -5,4 +5,4 @@ streamlit
 python-dotenv
 Langchain_chroma
 Langchain_huggingface
-sentence-transformer
+sentence-transformers
