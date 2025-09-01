@@ -1,0 +1,8 @@
+Langchain
+Langchain_community
+Langchain-groq
+streamlit
+python-dotenv
+Langchain_chroma
+Langchain_huggingface
+sentence-transformer
