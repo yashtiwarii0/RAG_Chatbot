@@ -297,8 +297,10 @@ else:
             if user_input and st.button("Send Query", type="primary"):
                 timestamp = datetime.now().strftime("%H:%M:%S")
                 
-                # Add user message to chat history
+                # ✅ Sync: Add user message to both UI & LangChain memory
                 st.session_state.chat_history.append(("user", user_input, timestamp))
+                session_history = get_session_history(session_id)
+                session_history.add_user_message(user_input)
                 
                 # Process the query
                 with st.spinner("🤔 Analyzing your question..."):
@@ -308,10 +310,11 @@ else:
                             config={"configurable": {"session_id": session_id}}
                         )
                         
-                        # Add assistant response to chat history
-                        st.session_state.chat_history.append(
-                            ("assistant", response['answer'], timestamp)
-                        )
+                        assistant_msg = response['answer']
+                        
+                        # ✅ Sync: Add assistant response to both UI & LangChain memory
+                        st.session_state.chat_history.append(("assistant", assistant_msg, timestamp))
+                        session_history.add_ai_message(assistant_msg)
                         
                         # Rerun to update the display
                         st.rerun()
